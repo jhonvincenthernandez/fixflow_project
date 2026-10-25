@@ -24,7 +24,7 @@ function skipToMain(): void {
 
 <template>
   <ion-app>
-    <a href="#main-content" class="ff-skip-link" @click.prevent="skipToMain">Skip to main content</a>
+    <a href="#main-content" class="ff-skip-link" @click.prevent="skipToMain">Skip to main content/page</a>
 
     <main v-if="state.status === 'loading'" class="boot" aria-busy="true">
       <AppLogo :link="false" />
