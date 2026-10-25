@@ -1,0 +1,68 @@
+# FixFlow: Vue 3, Vite, Ionic, Capacitor (Android)
+# Ignore generated output and machine-local files only.
+# Source, configuration, tests, .agents skills, and android/ are committed.
+
+# Dependencies
+node_modules/
+
+# Build output. dist/ is the Capacitor web directory, rebuilt by npm run build.
+dist/
+
+# Test output
+coverage/
+
+# TypeScript incremental output
+*.tsbuildinfo
+
+# Environment and local overrides. Keep .env.example for documentation.
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Capacitor Android generated output.
+# android/ itself is committed because the GitHub runner compiles it.
+android/.gradle/
+android/build/
+android/app/build/
+android/.kotlin/
+android/.cxx/
+android/.externalNativeBuild/
+android/captures/
+android/local.properties
+android/app/src/main/assets/public/
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json
+android/app/src/main/res/xml/config.xml
+android/capacitor-cordova-android-plugins/
+
+# Android signing material. Never commit keys or their passwords.
+*.jks
+*.keystore
+keystore.properties
+
+# Android package and profiling output
+*.apk
+*.aab
+*.ap_
+*.hprof
+
+# Editors and IDEs
+.idea/
+*.iml
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/

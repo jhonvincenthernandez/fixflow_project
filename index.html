@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" data-appearance="system">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <!-- Both values mirror --color-canvas in src/theme/global.css. -->
+    <meta name="theme-color" content="#fbfaf9" media="(prefers-color-scheme: light)" data-appearance="light" />
+    <meta name="theme-color" content="#111318" media="(prefers-color-scheme: dark)" data-appearance="dark" />
+    <!-- Critical first paint for a stored appearance preference. -->
+    <style>
+      html { background-color: #fbfaf9; }
+      html[data-appearance="dark"] { background-color: #111318; }
+      @media (prefers-color-scheme: dark) {
+        html[data-appearance="system"] { background-color: #111318; }
+      }
+    </style>
+    <script>
+      // Keep the storage key in sync with APPEARANCE_KEY in src/data/appearance.ts.
+      (function () {
+        var preference = 'system'
+        try {
+          var stored = localStorage.getItem('fixflow.appearance')
+          if (stored === 'light' || stored === 'dark') preference = stored
+        } catch (error) {
+          preference = 'system'
+        }
+        document.documentElement.dataset.appearance = preference
+
+        var resolved = preference
+        if (preference === 'system') {
+          resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        var metas = document.querySelectorAll('meta[name="theme-color"][data-appearance]')
+        for (var index = 0; index < metas.length; index += 1) {
+          metas[index].media = metas[index].getAttribute('data-appearance') === resolved ? 'all' : 'not all'
+        }
+      })()
+    </script>
+    <meta name="description" content="Request a repair, review the quotation, book a time, and track the service in one place." />
+    <title>FixFlow</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
